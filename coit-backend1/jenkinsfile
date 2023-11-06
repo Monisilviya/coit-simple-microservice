@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                cd coit-backend1 && mvn deploy
+            }
+        }
+        stage('docker-build') {
+            steps {
+                cd coit-backend1
+    docker build -t amol1996/coit-backend1-12344321:latest .
+            }
+        }
+        stage('docker-push') {
+            steps {
+                cd coit-backend1
+    docker push amol1996/coit-backend-12344321:latest .
+            }
+
+    }
+}
+}
